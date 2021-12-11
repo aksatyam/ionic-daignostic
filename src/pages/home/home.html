@@ -1,14 +1,71 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Ion Diagnostic
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v3">docs</a> will be your guide.
-  </p>
+  
+
+   <button
+      ion-button 
+      block 
+      color="primary"
+      *ngIf="isCameraEnabled"
+      (click)="selectPictureFromPhotoLibrary()">
+      Take a picture
+   </button>
+
+
+
+   <button
+      ion-button 
+      block 
+      color="primary"
+      *ngIf="isWifiEnabled"
+      (click)="openLink('http://www.google.com')">
+      Open Google in browser window
+   </button>
+
+
+
+   <ion-item *ngIf="isLocationEnabled">
+      <h2>Your location</h2>
+      <p>
+         Latitude: {{ latitude }}<br>
+         Longitude: {{ longitude }}
+      </p>
+   </ion-item>
+
+
+
+   <ion-item *ngIf="isContactsEnabled">
+      <section>
+         <img *ngIf="isCameraAvailable" [src]="isImageTaken">
+         <h2>John Doe</h2>
+         <p>
+         	Nickname: JD<br>
+         	Address: 1 Anywhere Place, Anywhere<br>
+         	Mobile: 01234567890<br>
+         	Email: john@johndoe.com<br>
+         </p>
+      </section>
+   </ion-item>
+
+
+
+
+   <button
+      ion-button 
+      block 
+      padding-top 
+      padding-bottom 
+      color="primary"
+      (click)="saveContact({ firstname: 'John', surname: 'Doe', nickname: 'JD', address : '1 Anywhere Place, Anywhereville', mobile: '01234567890', email : 'johndoe@johndoe.com' })">
+      Store this contact
+   </button>
+
+
 </ion-content>
